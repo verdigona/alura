@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador</title>
+</head>
+<body>
+    <textarea name="claro" id="claro" cols="30" rows="10"></textarea>
+    <br>
+    <textarea name="cript" id="cript" cols="30" rows="10"></textarea>
+    <br>
+    <button id="encriptar">encriptar</button>
+    <button id="decriptar">desencriptar</button>
+    <button id="copiar">copiar</button>
+
+    <script>
+        let encriptar=document.getElementById("encriptar")
+        encriptar.addEventListener("click",function(){
+            let claro=document.getElementById("claro")
+            let cript=document.getElementById("cript")
+            let text=claro.value 
+            function cambio(caracter){
+                if (caracter==='a'){
+                    return "ai"
+                }
+                if (caracter==='e'){
+                    return "enter"
+                }
+                if (caracter==='i'){
+                    return "imes"
+                }
+                if (caracter==='o'){
+                    return "ober"
+                }
+                if (caracter==='u'){
+                    return "ufat"
+                }
+                return caracter
+            }
+            let salida=""
+            for (let i of text.split("")){
+                salida+=cambio(i)
+            }
+            cript.value=salida
+
+        })
+
+        let decriptar=document.getElementById("decriptar")
+        decriptar.addEventListener("click",function(){
+            let claro=document.getElementById("claro")
+            let cript=document.getElementById("cript")
+            let text=claro.value 
+            let salida=""
+            text=text.replace(/enter/g,"e")
+            text=text.replace(/imes/g,"i")
+            text=text.replace(/ober/g,"o")
+            text=text.replace(/ufat/g,"u")
+            text=text.replace(/ai/g,"a")
+            cript.value=text
+
+
+        })
+
+        let copiar=document.getElementById("copiar")
+        copiar.addEventListener("click",function(){
+            let cript=document.getElementById("cript")
+            cript.select()
+            var res = document.execCommand('copy');
+            if (res){
+                alert("copia con exito")
+            }
+            else{
+                alert("fallo al copiar")
+            }
+
+
+
+        })
+
+
+    </script>
+    
+</body>
+</html>
